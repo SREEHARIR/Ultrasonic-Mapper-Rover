@@ -122,7 +122,73 @@ void stop()
 }
 
 
+void obstacle_avoid()
+{
+  int i = 0;
+  sweep();
+  for (i = 0; i < 60; i++)
+  {
+    distright += dist[i];
+    distforw += dist[i + 60];
+    distleft += dist[i + 120];
+  }
+  distforw /= 20;
+  distleft /= 20;
+  distright /= 20;
 
+  if (distleft < leftthresh)
+  {
+    objleft = 1;
+  }
+  else
+  {
+    objleft = 0;
+  }
+  //Serial.print("distleft");
+  //Serial.println(distleft);
+  if (distright < rightthresh)
+  {
+    objright = 1;
+  }
+  else
+  {
+    objright = 0;
+  }
+  //Serial.print("distright");
+  //Serial.println(distright);
+  if (distforw < forwthresh)
+  {
+    objforw = 1;
+  }
+  else
+  {
+    objforw = 0;
+  }
+  //Serial.print("distforw");
+  //Serial.println(distforw);
+  if (objforw == 1)
+  {
+    if (objleft == 1)
+    {
+      if (objright == 1)
+      {
+        backward();
+      }
+      else
+      {
+        right();
+      }
+    }
+    else
+    {
+      left();
+    }
+  }
+  else
+  {
+    forward();
+  }
+}
 
 
 void sweep()
