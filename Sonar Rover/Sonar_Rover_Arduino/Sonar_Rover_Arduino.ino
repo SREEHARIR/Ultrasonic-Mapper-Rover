@@ -120,3 +120,39 @@ void stop()
   digitalWrite(mrp, LOW);
   digitalWrite(mrn, LOW);
 }
+
+
+
+
+
+void sweep()
+{
+  int sw_delay = 2;
+//  for (pos = 0; pos <= 180; pos++)
+//  {
+//    servo.write(pos);
+//    distance();
+//    //delay(sw_delay);
+//    //Serial.println(pos);
+//  }
+//  
+  A:
+  pos = pos + sweepinc;
+  servo.write(pos);
+  distance();
+  if (pos == 0 || pos == 180) {
+    sweepinc = -sweepinc ;
+  }
+  else 
+  {
+    goto A;
+  }
+//
+//  for (pos = 0; pos >= 0; pos--)
+//  {
+//    servo.write(pos);
+//    distance();
+//    //delay(sw_delay);
+//    //Serial.println(pos);
+//  }
+}
