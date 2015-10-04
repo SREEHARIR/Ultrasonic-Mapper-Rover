@@ -259,3 +259,12 @@ long distance()
 
 }
 
+
+void establishContact() {
+  while (Serial.read() != 'A')
+  {
+    //mySerial.write('A');   // send a capital A
+    Serial.write('A');
+    delay(300);
+  }
+}
