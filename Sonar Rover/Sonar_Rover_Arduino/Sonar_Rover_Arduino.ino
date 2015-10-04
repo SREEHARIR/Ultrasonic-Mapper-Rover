@@ -156,3 +156,40 @@ void sweep()
 //    //Serial.println(pos);
 //  }
 }
+
+
+long distance()
+{
+  unsigned long dista = 0, duration = 0;
+  delayMicroseconds(5);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(trig, LOW);
+  duration = pulseIn(echo, HIGH);
+  dista = duration / 29.1 / 2;
+  dist[pos] = dista;
+  delay(5);
+
+ // if (Serial.available())
+  {
+   // if (Serial.read() == 'A')
+    {
+      //   Serial.read();
+      // Serial.write('B');
+      //Serial.println();
+      //Serial.println(duration);
+      Serial.write(dista);
+      //Serial.println(dista);
+      Serial.write(pos);
+      //Serial.println(pos);
+      Serial.write(direc);
+      //Serial.println(direc);
+      Serial.write(travel);
+      //Serial.println(travel
+      //Serial.println("cm");
+      travel = 0;
+    }
+  }
+
+}
+
