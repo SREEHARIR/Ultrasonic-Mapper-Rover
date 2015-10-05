@@ -14,6 +14,28 @@ int trig = 12;
 int echo = 2;
 Servo servo;
 
+unsigned long dist[181];
+long distleft;
+long distright;
+long distforw;
+int leftdelay = 200;
+int rightdelay = 200;
+int forwdelay = 100;
+int backdelay = 100;
+int en1turn = 200;
+int en2turn = 200;
+int objleft = 0;
+int objright = 0;
+int objforw = 0;
+int objback = 0;
+int pos = 0;
+int direc = 0;      //0-forw,1-right,2-back,3-left
+int travel = 0;
+int forwthresh = 50;
+int leftthresh = 30;
+int rightthresh = 30;
+
+int sweepinc = 3;
 
 void setup()
 {
@@ -36,10 +58,17 @@ void setup()
 
 }
 
+void loop()
+{
+  //int x = distance();
+//  left();
+  //right();
+  //forward();
+  //backward();
+  obstacle_avoid();
+  // sweep();
 
-void loop(){
 }
-
 
 void left()
 {
@@ -121,7 +150,6 @@ void stop()
   digitalWrite(mrn, LOW);
 }
 
-
 void obstacle_avoid()
 {
   int i = 0;
@@ -190,7 +218,6 @@ void obstacle_avoid()
   }
 }
 
-
 void sweep()
 {
   int sw_delay = 2;
@@ -222,7 +249,6 @@ void sweep()
 //    //Serial.println(pos);
 //  }
 }
-
 
 long distance()
 {
@@ -258,7 +284,6 @@ long distance()
   }
 
 }
-
 
 void establishContact() {
   while (Serial.read() != 'A')
