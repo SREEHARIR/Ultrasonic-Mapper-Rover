@@ -49,3 +49,49 @@ void setup()
   comPort = new Serial(this, "COM4", 9600);
   //comPort.bufferUntil('\n');
 }
+
+
+void serialEvent(Serial myPort)
+{
+ myPort.write('A');
+ //println('A');
+  int inByte = myPort.read();
+//  int x = inByte;
+  if (firstContact == false)
+  {
+    if (inByte == 'A')
+    { 
+      myPort.clear();          // clear the serial port buffer 
+      firstContact = true;     // you've had first contact from the microcontroller
+      myPort.write('A');       // ask for more
+      println('A');
+    }
+  } else //if(x == 'B')
+  {
+ //   myPort.clear();
+    // Add the latest byte from the serial port to array:
+    serialInArray[serialCount] = inByte;
+    serialCount++;
+
+    // If we have 4 bytes:
+    if (serialCount > 3 ) 
+    {
+      dista = serialInArray[0];
+      pos = serialInArray[1];
+      direc = serialInArray[2];
+      travel = serialInArray[3];
+
+      updateRadar();
+      updateroom();
+
+      // print the values (for debugging purposes only):
+      println(dista + "\t" + pos + "\t" + direc + "\t" + travel);
+
+      // Send a capital A to request new sensor readings:
+      myPort.write('A');
+      println('A');
+      // Reset serialCount:
+      serialCount = 0;
+    }
+  }
+}
