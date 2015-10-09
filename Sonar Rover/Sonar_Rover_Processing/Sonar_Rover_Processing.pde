@@ -51,6 +51,40 @@ void setup()
 }
 
 
+void drawRadar() 
+{
+  frame.setTitle("RADAR");
+  background(0, 0, 0, 0);
+  fill(255);
+
+  for (int i=0; i<91; i++)
+  {
+
+    alphaVal[i]=alphaVal[i]-4;
+
+    if (alphaVal[i]<0)
+    {
+      alphaVal[i]=0;
+    }
+
+    stroke(255, distance2[i], 0, alphaVal[i]);
+
+    strokeWeight(2);
+    line(width/2, height, (width/2)-cos(radians((90-i)*2))*(distance2[i]*lineSize), height-sin(radians((90-i)*2))*(distance2[i]*lineSize));
+
+    stroke(255, 255, 255, alphaVal[i]);
+    strokeWeight(1);
+    ellipse((width/2)-cos(radians((90-i)*2))*(distance2[i]*lineSize), height-sin(radians((90-i)*2))*(distance2[i]*lineSize), 5, 5);
+  }
+}
+
+void updateRadar ()
+{
+  alphaVal[pos/2] = 180;
+  distance2[pos/2] = dista;
+  distance2[pos/2] = int(map((distance2[pos/2]), 1, 255, 1, height));
+
+}
 void drawRoom() 
 {
   frame.setTitle("ROOM");
