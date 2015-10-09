@@ -51,6 +51,92 @@ void setup()
 }
 
 
+void drawRoom() 
+{
+  frame.setTitle("ROOM");
+  background(0);
+  fill(55,175,15,255);
+  stroke(255);
+  strokeWeight(2);
+  ellipse(posix, posiy, 5, 5);
+  constrain(trn,0,100);
+  for(int i=1;i<trn;i++)
+  {
+    stroke(170,25,25,255);
+    strokeWeight(2);
+    line(turnx[i-1], turny[i-1], turnx[i], turny[i]);
+  }
+  stroke(50,250,200,255);
+  line(turnx[trn],turny[trn],posix,posiy);
+}
+
+void updateroom()
+{
+  switch(direc)
+  {
+  case 0:
+  //  c0+=travel;
+  //  if (c0==scale)
+    {
+      posiy-=travel;
+      c0=0;
+      if(cp!=0)
+      {
+        turnx[trn]=posix;
+        turny[trn]=posiy;
+        trn++;
+        cp=0;
+      }
+    }
+    break;
+  case 1:
+   // c1+=travel;
+   // if (c1==scale)
+    {
+      posix+=travel;
+      c1=0;
+      if(cp!=1)
+      {
+        turnx[trn]=posix;
+        turny[trn]=posiy;
+        trn++;
+        cp=1;
+      }
+    }
+    break;
+  case 2:
+ //   c2+=travel;
+ //   if (c2==scale)
+    {
+      posiy+=travel;
+      c2=0;
+      if(cp!=2)
+      {
+        turnx[trn]=posix;
+        turny[trn]=posiy;
+        trn++;
+        cp=2;
+      }
+    }
+    break;
+  case 3:
+ //   c3+=travel;
+ //   if (c3==scale)
+    {
+      posix-=travel;
+      c3=0;
+      if(cp!=3)
+      {
+        turnx[trn]=posix;
+        turny[trn]=posiy;
+        trn++;
+        cp=3;
+      }
+    }
+    break;
+  }
+}
+
 void serialEvent(Serial myPort)
 {
  myPort.write('A');
