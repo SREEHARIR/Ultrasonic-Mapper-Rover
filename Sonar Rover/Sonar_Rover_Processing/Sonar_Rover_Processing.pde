@@ -50,6 +50,30 @@ void setup()
   //comPort.bufferUntil('\n');
 }
 
+void draw()
+{
+  switch(currentScreen) 
+  {
+  case 0: 
+    drawRadar();
+    break;
+  case 1: 
+    drawRoom(); 
+    break;
+  default: 
+    background(0); 
+    break;
+  }
+}
+
+void mousePressed() 
+{
+  currentScreen++;
+  if (currentScreen > 1) 
+  { 
+    currentScreen = 0;
+  }
+}
 
 void drawRadar() 
 {
