@@ -109,6 +109,7 @@ void updateRadar ()
   distance2[pos/2] = int(map((distance2[pos/2]), 1, 255, 1, height));
 
 }
+
 void drawRoom() 
 {
   frame.setTitle("ROOM");
@@ -239,3 +240,4 @@ void serialEvent(Serial myPort)
     }
   }
 }
+
